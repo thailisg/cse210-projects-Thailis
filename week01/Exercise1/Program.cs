@@ -8,13 +8,16 @@ class Program
         string name = Console.ReadLine();
 
         Console.WriteLine("What is your last name? ");
-        string last_name = Console.ReadLine();
+        string lastName = Console.ReadLine();
 
-        Console.WriteLine($"Your name is {last_name}, {name} {last_name}. ");
+        Console.WriteLine($"Your name is {lastName}, {name} {lastName}. ");
 
         Console.WriteLine("What is your grade percentage? ");
         string userInput = Console.ReadLine();
-        float number = int.Parse(userInput);
+        int number = int.Parse(userInput);
+
+        int lastDigit = number % 10;
+        string sign = "";
 
         string letter = "";
 
@@ -39,7 +42,42 @@ class Program
             letter = "F";
         }
 
-        Console.WriteLine($"Your grade is: {letter}");
+        //statement + or -
+
+        if (lastDigit >= 7)
+        {
+            sign = "+";
+            if (letter == "A")
+            {
+                Console.WriteLine($"Your grade is: {letter}");
+            }
+            else if (letter == "F")
+            {
+                Console.WriteLine($"Your grade is: {letter}");
+            }
+
+            else
+            {
+                Console.WriteLine($"Your grade is: {letter}{sign}");
+            }
+        }
+
+        else if (lastDigit <= 3)
+        {
+            sign = "-";
+
+            if (letter == "F")
+            {
+                Console.WriteLine($"Your grade is: {letter}");
+            }
+            Console.WriteLine($"Your grade is: {letter}{sign}");
+        }
+
+        else
+        {
+            Console.WriteLine($"Your grade is: {letter}");
+        }
+        
 
         // message
         if (number >= 70)
@@ -50,5 +88,7 @@ class Program
         {
             Console.WriteLine("Nice try! good luck the next time. ");
         }
+
+
     }
 }
