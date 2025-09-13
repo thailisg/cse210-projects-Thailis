@@ -17,8 +17,8 @@ public class PromptGenerator
 
         else
         {
-            Console.WriteLine("The file was not found. D:");
-            return null;
+            return "The file was not found. D:";
+            
         }
     }
 }
