@@ -8,21 +8,16 @@ public class PromptGenerator
 
     public string GetRandomPrompt(string fileCsv)
     {
-        try
+        if (File.Exists(fileCsv))
         {
-            List<string> prompts = new List<string>(File.ReadAllLines(fileCsv));
-
-            if (prompts.Count == 0)
-                return "No more prompts.";
-
-            int index = random.Next(prompts.Count);
-
-            return prompts[index];
+            string[] lines = File.ReadAllLines(fileCsv);
+            int index = random.Next(lines.Length);
+            return lines[index];
         }
-        catch (Exception e)
+
+        else
         {
-            Console.WriteLine("The file could not be read:");
-            Console.WriteLine(e.Message);
+            Console.WriteLine("The file was not found. D:");
             return null;
         }
     }
