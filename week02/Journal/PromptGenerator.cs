@@ -4,7 +4,7 @@ using System.IO;
 
 public class PromptGenerator
 {
-    private Random random = new Random();
+    public Random random = new Random();
 
     public string GetRandomPrompt(string fileCsv)
     {
