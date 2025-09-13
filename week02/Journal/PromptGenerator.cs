@@ -6,19 +6,18 @@ public class PromptGenerator
 {
     public Random random = new Random();
 
-    public string GetRandomPrompt(string fileCsv)
+    public List<string> _prompts = new List<string>
     {
-        if (File.Exists(fileCsv))
-        {
-            string[] lines = File.ReadAllLines(fileCsv);
-            int index = random.Next(lines.Length);
-            return lines[index];
-        }
+        "What made you happy today?",
+        "Did you do all your homework?",
+        "What's your emotion today? Let it out!",
+        "Write down your chores so you don't forget them.",
+        "What did you eat today? Did you like it?"
+    };
 
-        else
-        {
-            return "The file was not found. D:";
-            
-        }
+    public string GetRandomPrompt()
+    {
+        int indexPrompt = random.Next(_prompts.Count);
+        return _prompts[indexPrompt];
     }
 }
