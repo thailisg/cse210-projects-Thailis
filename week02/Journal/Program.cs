@@ -1,20 +1,21 @@
 using System;
 using Microsoft.VisualBasic.FileIO;
 
+//Creativity: I decided to add a variable for the name to make the journal more personal
 class Program
 {
     static void Main(string[] args)
     {
-        Journal journal = new Journal();
+        Console.WriteLine("Welcome to the Journal! What's your name? :D");
+        string userName = Console.ReadLine();
 
+        Journal journal = new Journal();
         string choiceOfMenu = "";
-        
-        Console.WriteLine("Welcome to the Journal! :D");
 
         while (choiceOfMenu != "5" && choiceOfMenu.ToLower() != "quit")
         {
 
-            Console.WriteLine("Please select one of the following choices:");
+            Console.WriteLine($"Hello! {userName}. Please select one of the following choices:");
             Console.WriteLine("1. Write");
             Console.WriteLine("2. Display");
             Console.WriteLine("3. Load");
@@ -27,7 +28,7 @@ class Program
             {
                 PromptGenerator generator = new PromptGenerator();
                 string prompt = generator.GetRandomPrompt();
-                Console.WriteLine($"{prompt}");
+                Console.WriteLine($"{userName}, {prompt}");
                 string response = Console.ReadLine();
 
                 Entry newEntry = new Entry();
@@ -69,7 +70,7 @@ class Program
 
             else if (choiceOfMenu == "5" || choiceOfMenu.ToLower() == "quit")
             {
-                Console.WriteLine("Byeee! Have a good day! Sincerely your Journal!");
+                Console.WriteLine($"Byeee {userName}! Have a good day! Sincerely your Journal!");
             }
 
             else
