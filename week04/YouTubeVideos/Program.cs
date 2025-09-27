@@ -10,13 +10,14 @@ class Program
         video1.AddCommentToList(new Comment("Tomas", "Nice video!"));
         video1.AddCommentToList(new Comment("Camila", "I love it!"));
         video1.AddCommentToList(new Comment("Aaron", "It is Amazing!"));
+        video1.AddCommentToList(new Comment("Thailis", "Oooo Incredible!"));
+        video1.AddCommentToList(new Comment("Camila", "The best video :o"));
 
         //Second Video
         Video video2 = new Video("video2", "Tomas", 550);
 
         video2.AddCommentToList(new Comment("Thailis", "Oooo Incredible!"));
         video2.AddCommentToList(new Comment("Camila", "The best video :o"));
-        video2.AddCommentToList(new Comment("Aaron", "Super Wow!"));
 
         //Third Video
 
@@ -32,6 +33,7 @@ class Program
         video4.AddCommentToList(new Comment("Tomas", "Nice video!"));
         video4.AddCommentToList(new Comment("Camila", "I love it!"));
         video4.AddCommentToList(new Comment("Thailis", "It is Amazing!"));
+        video4.AddCommentToList(new Comment("Kate", "Wohoo!"));
 
         List<Video> videos = new List<Video>
         {
