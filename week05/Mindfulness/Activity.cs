@@ -28,9 +28,9 @@ public class Activity
 
     public void DisplayEndingMessage()
     {
-        Console.WriteLine($"Well Done! <3");
+        Console.WriteLine($"\nWell Done! <3");
         ShowSpinner(3);
-        Console.WriteLine($"You have completed another {_duration} seconds of the {_name}");
+        Console.WriteLine($"\nYou have completed another {_duration} seconds of the {_name}\n");
         ShowSpinner(3);
 
     }
@@ -41,21 +41,23 @@ public class Activity
         DateTime endTime = startTime.AddSeconds(seconds);
 
         int dots = 1;
+        int maxDots = 3;
 
         while (DateTime.Now < endTime)
         {
-            Console.Write("\r" + new string('.', dots));
-            Thread.Sleep(1000);
+            Console.Write("\r" + new string(' ', maxDots) + "\r");
+            Console.Write(new string('.', dots));
+            Thread.Sleep(500);
 
             dots++;
 
-            if (dots > 3)
+            if (dots > maxDots)
             {
                 dots = 1;
             }
         }
 
-        Console.WriteLine("\r   \r");
+        Console.Write("\r" + new string(' ', maxDots) + "\r");
     }
 
     public void ShowCountDown(int seconds)
@@ -66,8 +68,6 @@ public class Activity
             Thread.Sleep(1000);
             Console.Write("\b \b");
         }
-
-        Console.WriteLine("Good Luck!");
     }
 
     public int GetDuration()

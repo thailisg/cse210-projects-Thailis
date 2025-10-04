@@ -19,15 +19,15 @@ public class BreathingActivity : Activity
         while (initialTime < totalDuration)
         {
 
-            Console.WriteLine("Breathe in...");
+            Console.WriteLine("Breathe in...\n");
             ShowCountDown(4);
             initialTime += 4;
 
-            Console.WriteLine("Hold the air");
+            Console.WriteLine("Hold the air\n");
             ShowCountDown(4);
             initialTime += 4;
 
-            Console.WriteLine("Now breathe out...");
+            Console.WriteLine("Now breathe out...\n");
             ShowCountDown(4);
             initialTime += 4;
 
