@@ -1,20 +1,18 @@
 using System;
 
-public class BreathingActivity
+public class BreathingActivity : Activity
 {
-    private string description = "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
-    public BreathingActivity()
+    public BreathingActivity() : base("Breathing Activity", "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.")
     {
 
     }
 
     public void Run()
     {
-        Activity activity = new Activity("Breathing Activity", description);
 
-        activity.DisplayStartingMessage();
+        DisplayStartingMessage();
 
-        int totalDuration = activity.GetDuration();
+        int totalDuration = GetDuration();
 
         int initialTime = 0;
 
@@ -22,19 +20,19 @@ public class BreathingActivity
         {
 
             Console.WriteLine("Breathe in...");
-            activity.ShowCountDown(4);
+            ShowCountDown(4);
             initialTime += 4;
 
             Console.WriteLine("Hold the air");
-            activity.ShowCountDown(4);
+            ShowCountDown(4);
             initialTime += 4;
 
             Console.WriteLine("Now breathe out...");
-            activity.ShowCountDown(4);
+            ShowCountDown(4);
             initialTime += 4;
 
         }
 
-        activity.DisplayEndingMessage();
+        DisplayEndingMessage();
     }
 }

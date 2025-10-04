@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-public class ReflectingActivity
+public class ReflectingActivity: Activity
 {
     private List<string> _prompts = new List<string>()
     {
@@ -24,19 +24,15 @@ public class ReflectingActivity
         "How can you keep this experience in mind in the future?"
     };
 
-    private string description = "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.";
-
     private Random random = new Random();
-    public ReflectingActivity()
+    public ReflectingActivity(): base("Reflecting Activity","This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.")
     {
 
     }
 
     public void Run()
     {
-        Activity activity = new Activity("Reflecting Activity", description);
-
-        activity.DisplayStartingMessage();
+        DisplayStartingMessage();
 
         Console.WriteLine("Consider the following prompt:");
         Console.WriteLine("");
@@ -47,9 +43,9 @@ public class ReflectingActivity
         Console.ReadLine();
 
         Console.Write($"Now ponder on each of the following questions as they related to this experience. You may begin in: ");
-        activity.ShowCountDown(5);
+        ShowCountDown(5);
 
-        int totalDuration = activity.GetDuration();
+        int totalDuration = GetDuration();
 
         int initialTime = 0;
 
@@ -57,11 +53,11 @@ public class ReflectingActivity
         {
             Console.WriteLine("");
             DisplayQuestion();
-            activity.ShowSpinner(10);
+            ShowSpinner(10);
             initialTime += 10;
         }
 
-        activity.DisplayEndingMessage();
+        DisplayEndingMessage();
 
     }
 

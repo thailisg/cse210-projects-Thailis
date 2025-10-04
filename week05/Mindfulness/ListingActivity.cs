@@ -1,6 +1,6 @@
 using System;
 
-public class ListingActivity
+public class ListingActivity: Activity
 {
     private int _count;
     private List<string> _prompts = new List<string>
@@ -12,33 +12,30 @@ public class ListingActivity
         "Who are some of your personal heroes?"
     };
 
-    private string description = "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.";
-
     private Random random = new Random();
 
-    public ListingActivity(int count)
+    public ListingActivity(): base("Listing Activity", "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.")
     {
-        _count = count;
+        
     }
 
     public void Run()
     {
-        Activity activity = new Activity("Listing Activity", description);
-
-        activity.DisplayStartingMessage();
+        DisplayStartingMessage();
 
         Console.WriteLine("List as many responses you can to the following prompt");
 
         GetRandomPrompt();
 
         Console.Write("You may begin in:");
-        activity.ShowCountDown(5);
+        ShowCountDown(5);
 
         List<string> listUser = GetListFromUser();
+        _count = listUser.Count;
 
-        Console.WriteLine($"You listed {listUser.Count} items");
+        Console.WriteLine($"You listed {_count} items");
 
-        activity.DisplayEndingMessage();
+        DisplayEndingMessage();
 
     }
 
@@ -54,7 +51,7 @@ public class ListingActivity
         List<string> listFromUser = new List<string>();
         string inputUser = "";
 
-        DateTime endtime = DateTime.Now.AddSeconds(_count);
+        DateTime endtime = DateTime.Now.AddSeconds(GetDuration());
 
         while (DateTime.Now < endtime)
         {
