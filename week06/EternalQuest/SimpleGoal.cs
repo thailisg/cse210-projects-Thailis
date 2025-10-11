@@ -19,7 +19,7 @@ public class SimpleGoal : Goal
         return _isComplete;
     }
 
-    public override string GetStringRepresentation()
+    public override string GetDetailsString()
     {
         string marked;
 
@@ -33,6 +33,11 @@ public class SimpleGoal : Goal
             marked = "[ ]";
         }
 
-        return marked + $"{GetDetailsString()}";
+        return marked + $"{base.GetDetailsString()}";
+    }   
+    
+    public override string GetStringRepresentation()
+    {
+        return $"SimpleGoal|{GetNames()}|{GetDescription()}|{GetPoints()}|{_isComplete}";
     }
 }

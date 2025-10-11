@@ -34,12 +34,12 @@ public class ChecklistGoal : Goal
         }
     }
 
-    public override string GetDetailsString()
+    public override string GetStringRepresentation()
     {
-        return base.GetDetailsString() + $" - Currently completed {_amountCompleted} / {_target}";
+        return $"ChecklistGoal|{GetNames()}|{GetDescription()}|{GetPoints()}|{_amountCompleted}|{_target}|{_bonus}";
     }
 
-    public override string GetStringRepresentation()
+    public override string GetDetailsString()
     {
         string marked;
         if (IsComplete() == true)
@@ -52,7 +52,7 @@ public class ChecklistGoal : Goal
             marked = "[ ]";
         }
 
-        return marked + $"{GetDetailsString()}";
+        return marked + base.GetDetailsString() + $" - Currently completed {_amountCompleted} / {_target}";
     }
 
     public int GetBonus()

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing;
 using System.IO;
 public class GoalManager
@@ -94,7 +95,7 @@ public class GoalManager
 
         foreach (Goal goal in _goals)
         {
-            Console.WriteLine($"{count}. {goal.GetStringRepresentation()}");
+            Console.WriteLine($"{count}. {goal.GetDetailsString()}");
             count++;
         }
     }
@@ -182,7 +183,7 @@ public class GoalManager
 
         Console.WriteLine($"\nCongratulations! You have earned {pointsEarned} points! WOHOO!");
 
-        Console.WriteLine($"You now have {_score}.");
+        Console.WriteLine($"You now have {_score}.\n");
     }
 
     public void SaveGoals()
@@ -210,10 +211,58 @@ public class GoalManager
         string[] lines = File.ReadAllLines(filename);
 
         _score = int.Parse(lines[0]);
+        _goals.Clear();
 
         foreach (string line in lines.Skip(1))
         {
-            Console.WriteLine(line);
+            string[] parts = line.Split('|');
+            string goalType = parts[0];
+
+            Goal goal = null;
+
+            if (goalType == "SimpleGoal")
+            {
+                string name = parts[1];
+                string desc = parts[2];
+                int points = int.Parse(parts[3]);
+                bool isComplete = bool.Parse(parts[4]);
+
+                goal = new SimpleGoal(name, desc, points);
+                if (isComplete)
+                {
+                    goal.RecordEvent();
+                }
+            }
+
+            else if (goalType == "EternalGoal")
+            {
+                string name = parts[1];
+                string desc = parts[2];
+                int points = int.Parse(parts[3]);
+
+                goal = new EternalGoal(name, desc, points);
+            }
+
+            else if (goalType == "ChecklistGoal")
+            {
+                string name = parts[1];
+                string desc = parts[2];
+                int points = int.Parse(parts[3]);
+                int amountCompleted = int.Parse(parts[4]);
+                int target = int.Parse(parts[5]);
+                int bonus = int.Parse(parts[6]);
+
+                var checklist = new ChecklistGoal(name, desc, points, target, bonus);
+                for (int i = 0; i < amountCompleted; i++)
+                    checklist.RecordEvent();
+
+                goal = checklist;
+            }
+
+            _goals.Add(goal);
         }
+
+        ListGoalDetails();
     }
+            
 }
